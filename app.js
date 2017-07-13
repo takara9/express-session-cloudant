@@ -39,7 +39,6 @@ store.on('error', function(err) {
 });
 
 
-
 // セッション管理 ミドルウェア設定
 var sess_opt = {
   store: store,
