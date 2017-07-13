@@ -11,7 +11,7 @@ var vcapLocal;
 try {
     vcapLocal = require("./vcap-local.json");
 } catch (err) {
-    throw err;
+    console.log(err);
 }
 var appEnvOpts = vcapLocal ? { vcap: vcapLocal} : {}
 var appEnv = cfenv.getAppEnv(appEnvOpts);
