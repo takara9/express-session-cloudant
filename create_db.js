@@ -12,7 +12,7 @@ try {
 }
 var appEnvOpts = vcapLocal ? { vcap: vcapLocal} : {}
 var appEnv = cfenv.getAppEnv(appEnvOpts);
-var svc = appEnv.getServiceCreds('Cloudant NoSQL DB-zj');
+var svc = appEnv.getServiceCreds('Cloudant NoSQL DB-j9');
 var Cloudant = require('cloudant');
 
 var cloudant = Cloudant(svc.url);
