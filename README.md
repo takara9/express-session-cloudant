@@ -12,9 +12,9 @@
 
 # ローカル環境で実行する場合
 
-(1) Bluemix で Cloudant Lite プランを作成します。
-(2) vcap-local.jsonファイルを編集して、Cloudantのサービス資格情報をセットします。
-(3) 必要なモジュールをインストール
+1. Bluemix で Cloudant Lite プランを作成します。
+2. vcap-local.jsonファイルを編集して、Cloudantのサービス資格情報をセットします。
+3. 必要なモジュールをインストール
 
 ~~~
 npm install
@@ -61,28 +61,28 @@ $ bx cf push
 # Dockerコンテナとしてローカルで動作させる場合
 ローカルのMacやWindowsに、Docker環境がインストールされている必要があります。
 
-(1) vcap-local.jsonを編集
-(2) npm install で必要なモジュールをインストール
-(3) docker build -t express-session .   コンテナをビルド
-(4) docker run -p 3000:3000 -t express-session  ローカル環境で実行開始
-(5) http://localhost:3000/foo でカウント・アップのテスト
+1. vcap-local.jsonを編集
+2. npm install で必要なモジュールをインストール
+3. docker build -t express-session .   コンテナをビルド
+4. docker run -p 3000:3000 -t express-session  ローカル環境で実行開始
+5. http://localhost:3000/foo でカウント・アップのテスト
 
 
 # シングルのDockerコンテナとしてBluemix上で動作させる場合
 
-(1) bx login  Bluemixへログイン
-(2) bx cr login  コンテナ・レジストリへログイン 
-(3) bx ic init  コンテナの認証情報初期化
-(4) bx ic namespace-set / namespace-get ネームスペースの設定と取得
-(5) イメージをタグ付け docker tag express-session registry.ng.bluemix.net/[your_name_space]/express-session
-(6) イメージをレジストリへ登録 docker push registry.ng.bluemix.net/[your_name_space]/express-session
-(7) パブリックIPを取得 bx ic ip-request
-(8) コンテナ起動コマンド bx ic run --name tkrX -m 128 -p [public_ip_address]:3000:3000 --env "CCS_BIND_SRV=Cloudant NoSQL DB-j9" registry.ng.bluemix.net/takara_node/express-session
+1. bx login  Bluemixへログイン
+2. bx cr login  コンテナ・レジストリへログイン 
+3. bx ic init  コンテナの認証情報初期化
+4. bx ic namespace-set / namespace-get ネームスペースの設定と取得
+5. イメージをタグ付け docker tag express-session registry.ng.bluemix.net/[your_name_space]/express-session
+6. イメージをレジストリへ登録 docker push registry.ng.bluemix.net/[your_name_space]/express-session
+7. パブリックIPを取得 bx ic ip-request
+8. コンテナ起動コマンド bx ic run --name tkrX -m 128 -p [public_ip_address]:3000:3000 --env "CCS_BIND_SRV=Cloudant NoSQL DB-j9" registry.ng.bluemix.net/takara_node/express-session
 
 
 # マルチ・インスタンスのDockerコンテナとしてBluemix上で動作させる場合
-前述の項目(8)を以下に置き換えて実行する
+前述の項目 8 を以下に置き換えて実行する
 
-(1) bx ic group-create --name tkrZ -m 128 -n tkr -d mybluemix.net --min 2 --max 3 --desired 2 -p 3000 --env "CCS_BIND_SRV=Cloudant NoSQL DB-j9" registry.ng.bluemix.net/[your_name_space]/express-session
+1. bx ic group-create --name tkrZ -m 128 -n tkr -d mybluemix.net --min 2 --max 3 --desired 2 -p 3000 --env "CCS_BIND_SRV=Cloudant NoSQL DB-j9" registry.ng.bluemix.net/[your_name_space]/express-session
 
 
