@@ -16,10 +16,12 @@ try {
 var appEnvOpts = vcapLocal ? { vcap: vcapLocal} : {}
 var appEnv = cfenv.getAppEnv(appEnvOpts);
 var svc = appEnv.getServiceCreds('Cloudant NoSQL DB-j9');
+console.log("vcapLocal = ",vcapLocal);
+console.log("credentials = ", svc.url);
 
 // セッション・ストアを設定する
 var CloudantStore = require('connect-cloudant-store')(session);
-console.log("credentials = ", svc.url);
+
 
 store = new CloudantStore({
         database: 'session_express',
